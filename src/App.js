@@ -7,6 +7,9 @@ import HookUseState from "./mission/HookUseState";
 // import HookUseEffect from "./lecture/HookUseEffect";
 import HookUseEffect from "./mission/HookUseEffect";
 import HookUseEffect_v2 from "./mission/HookUseEffect_v2";
+// import HookUseRef from "./lecture/HookUseRef";
+import HookUseRef from "./mission/HookUseRef";
+import HookUseRef_v2 from "./mission/HookUseRef_v2";
 
 function App() {
   return (
@@ -15,12 +18,14 @@ function App() {
       {/* <JsxRules /> */}
       {/* <HookUserState /> */}
       {/* <HookUseEffect /> */}
-
+      {/* <HookUseRef /> */}
       {/* 미션 */}
       {/* <JsxRules /> */}
       {/* <HookUseState /> */}
-      <HookUseEffect />
-      <HookUseEffect_v2 />
+      {/* <HookUseEffect /> */}
+      {/* <HookUseEffect_v2 /> */}
+      {/* <HookUseRef /> */}
+      <HookUseRef_v2 />
     </div>
   );
 }
