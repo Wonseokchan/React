@@ -15,6 +15,8 @@ import HookUseRef_v2 from "./mission/HookUseRef_v2";
 import HookUseCallback from "./mission/HookUseCallback";
 // import PropsSend from "./lecture/PropsSend";
 import PropsSend from "./mission/PropsSend";
+import CleanUp from "./lecture/CleanUp";
+import SignUp from "./mission/SignUp";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
       {/* <HookUseRef /> */}
       {/* <HookUseCallback /> */}
       {/* <PropsSend /> */}
+      {/* <CleanUp /> */}
+
       {/* 미션 */}
       {/* <JsxRules /> */}
       {/* <HookUseState /> */}
@@ -34,7 +38,8 @@ function App() {
       {/* <HookUseRef /> */}
       {/* <HookUseRef_v2 /> */}
       {/* <HookUseCallback /> */}
-      <PropsSend />
+      {/* <PropsSend /> */}
+      <SignUp />
     </div>
   );
 }
