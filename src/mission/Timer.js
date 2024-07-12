@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 
 function Timer({ init, close }) {
   const [code, setCode] = useState("");
-  const [sec, setSec] = useState(init);
-  // const [validate, setValidate] = useState(false);
+  const [sec, setSec] = useState(init || 100);
   const codeInfo = JSON.parse(localStorage.getItem("code"));
+
   const codeOnChangeHandler = useCallback((e) => {
     setCode(e.target.value);
   }, []);
@@ -12,10 +12,9 @@ function Timer({ init, close }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setSec((prev) => {
-        if (prev <= 1) {
+        if (prev == 1) {
           alert("제한시간이 종료되었습니다");
-          clearInterval(timer);
-          return 0;
+          close({ validate: false });
         }
         return prev - 1;
       });
@@ -25,15 +24,16 @@ function Timer({ init, close }) {
       clearInterval(timer);
     };
   }, []);
+
   const formatTime = (totalSeconds) => {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
     return `${minutes} : ${seconds < 10 ? "0" : ""}${seconds}`;
   };
+
   const codeCheck = () => {
     if (code == codeInfo) {
       alert("인증완료");
-      // setValidate(true);
       close({ validate: true });
       return;
     }
@@ -57,10 +57,10 @@ function Timer({ init, close }) {
         <input
           type="text"
           className="h-10 border mt-1 rounded px-4 ml-5  bg-gray-50"
-          placeholder=""
           value={formatTime(sec)}
           style={{ width: "35%" }}
           readOnly
+          disabled
         />
         <button
           className="bg-orange-500 text-white rounded-md px-1 py-1 ml-5"

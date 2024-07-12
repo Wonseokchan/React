@@ -2,24 +2,29 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Timer from "./Timer";
 
 function SignUp() {
-  useEffect(() => {
-    const randCode = Math.floor(Math.random() * 89999) + 10000;
-    localStorage.setItem("code", JSON.stringify(randCode));
-  }, []);
-  const btnRef = useRef();
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
   const [email, setEmail] = useState("");
   const [show, setShow] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    const randCode = Math.floor(Math.random() * 89999) + 10000;
+    localStorage.setItem("code", JSON.stringify(randCode));
+  }, []);
+
   const idOnChangeHandler = useCallback((e) => {
     setId(e.target.value);
   }, []);
+
   const pwOnChangeHandler = useCallback((e) => {
     setPw(e.target.value);
   }, []);
+
   const emailOnChangeHandler = useCallback((e) => {
     setEmail(e.target.value);
   }, []);
+
   const mailClick = () => {
     if (!id) {
       alert("아이디를 입력하세요");
@@ -33,23 +38,25 @@ function SignUp() {
       alert("이메일을 입력하세요");
       return;
     }
-    if (id && pw && email) {
-      setShow(true);
-    }
-  };
-  const asignBtn = () => {
-    let userInfo = { id: id, pw: pw, email: email };
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
-    alert("회원가입 완료");
+    setShow(true);
   };
 
-  const [success, setSuccess] = useState(false);
   const goClose = (param) => {
     if (param) {
       setShow(false);
       if (param.validate) {
         setSuccess(true);
       }
+    }
+  };
+
+  const assignBtn = () => {
+    if (success) {
+      let userInfo = { id: id, pw: pw, email: email };
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      alert("회원가입 완료");
+    } else {
+      alert("이메일 인증을 먼저 해주세요");
     }
   };
   return (
@@ -76,7 +83,7 @@ function SignUp() {
                       <label>비밀번호</label>
                       <input
                         type="password"
-                        className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        className="h-10 border mt-1 rounded px-4 w-full  bg-gray-50"
                         onChange={pwOnChangeHandler}
                       />
                     </div>
@@ -100,7 +107,7 @@ function SignUp() {
                         </button>
                       </div>
                     </div>
-                    {show ? <Timer init={100} close={goClose} /> : null}
+                    {show ? <Timer init={120} close={goClose} /> : null}
 
                     <div className="md:col-span-5 text-right">
                       <div className="inline-flex items-end">
@@ -110,9 +117,7 @@ function SignUp() {
                               ? "bg-blue-500 text-white hover:bg-blue-700 font-bold py-2 px-4 rounded"
                               : "bg-blue-500 text-white font-bold py-2 px-4 rounded"
                           } font-bold py-2 px-4 rounded`}
-                          onClick={asignBtn}
-                          ref={btnRef}
-                          disabled
+                          onClick={assignBtn}
                         >
                           가입하기
                         </button>

@@ -17,6 +17,8 @@ import HookUseCallback from "./mission/HookUseCallback";
 import PropsSend from "./mission/PropsSend";
 import CleanUp from "./lecture/CleanUp";
 import SignUp from "./mission/SignUp";
+import Schedule from "./mission/Schedule";
+import SchedulePopUp from "./mission/SchedulePopUp";
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
       {/* <HookUseCallback /> */}
       {/* <PropsSend /> */}
       {/* <CleanUp /> */}
-
+      {/* <Schedule /> */}
       {/* 미션 */}
       {/* <JsxRules /> */}
       {/* <HookUseState /> */}
@@ -39,7 +41,9 @@ function App() {
       {/* <HookUseRef_v2 /> */}
       {/* <HookUseCallback /> */}
       {/* <PropsSend /> */}
-      <SignUp />
+      {/* <SignUp /> */}
+      <Schedule />
+      <SchedulePopUp />
     </div>
   );
 }
