@@ -18,6 +18,7 @@ import PropsSend from "./mission/PropsSend";
 import CleanUp from "./lecture/CleanUp";
 import SignUp from "./mission/SignUp";
 import Schedule from "./mission/Schedule";
+// import Schedule from "./lecture/Schedule";
 import SchedulePopUp from "./mission/SchedulePopUp";
 
 function App() {
@@ -43,7 +44,6 @@ function App() {
       {/* <PropsSend /> */}
       {/* <SignUp /> */}
       <Schedule />
-      <SchedulePopUp />
     </div>
   );
 }

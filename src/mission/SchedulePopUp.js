@@ -1,16 +1,29 @@
 import { useCallback, useState } from "react";
 
-function SchedulePopUp() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const titleOnChangeHandler = useCallback((e) => {
-    setTitle(e.target.value);
+function SchedulePopUp({ close }) {
+  const [info, setInfo] = useState({
+    title: "",
+    content: "",
   });
-  const contentOnChangeHandler = useCallback((e) => {
-    setContent(e.target.value);
-  });
-  const submitBtn = () => {};
-  const cancelBtn = () => {};
+
+  const titleOnChangeHandler = (e) => {
+    setInfo({
+      title: e.target.value,
+      content: info.content,
+    });
+  };
+
+  const contentOnChangeHandler = (e) => {
+    setInfo({
+      title: info.title,
+      content: e.target.value,
+    });
+  };
+
+  const submitBtn = () => {
+    close({ close: true, info: info });
+  };
+
   return (
     <>
       <div className="container mx-auto w-11/12 md:w-2/3 max-w-lg">
@@ -41,7 +54,7 @@ function SchedulePopUp() {
             </button>
             <button
               className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm"
-              onClick={cancelBtn}
+              onClick={() => close(true)}
             >
               취소
             </button>
